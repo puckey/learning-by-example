@@ -1,0 +1,14 @@
+{
+  "name": "learning-by-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "are.na": "^0.1.0",
+    "axios": "^0.18.0",
+    "fs-extra": "^5.0.0",
+    "google-news": "^1.4.6",
+    "qs": "^6.5.1",
+    "titlecase": "^1.1.2"
+  }
+}
