@@ -6,6 +6,7 @@ const toTitleCase = require('titlecase').toLaxTitleCase;
 
 const googleNews = new GoogleNews();
 const accessToken = process.argv[2];
+const postsFile = process.argv[3] || 'posts.json';
 
 if (!accessToken) {
   console.log('Please provide Are.na access token as argument');
@@ -14,8 +15,8 @@ if (!accessToken) {
 
 const store = new JsonStore(
   path.resolve(
-    __dirname,
-    'posts.json'
+    process.cwd(),
+    postsFile
   ),
   { links: [], titles: [] }
 );
