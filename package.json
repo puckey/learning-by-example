@@ -3,11 +3,32 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "babel ./src --out-dir build --copy-files --source-maps inline",
+    "package": "npm run build; npx pkg -t macos build/index.js -o learning-by-example"
+  },
   "dependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/node": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-stage-1": "^7.0.0-beta.40",
     "axios": "^0.18.0",
+    "feedparser": "^2.2.9",
     "fs-extra": "^5.0.0",
-    "google-news": "^1.4.6",
+    "pkg": "^4.3.0",
     "qs": "^6.5.1",
+    "request": "^2.85.0",
     "titlecase": "^1.1.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.2.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

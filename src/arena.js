@@ -43,9 +43,6 @@ class Arena {
   }
 
   _req(method, url, ...data) {
-    console.log({
-      method, url, data
-    })
     return this.requestHandler(method.toLowerCase(), url,
       qs.stringify(Object.assign({}, ...data), {indices:false}));
   }
