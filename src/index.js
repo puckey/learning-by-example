@@ -5,7 +5,6 @@ import Arena from './arena.js';
 import JsonStore from './json-store';
 import GoogleNews from './google-news';
 
-const googleNews = new GoogleNews();
 const accessToken = process.argv[2];
 const postsFile = process.argv[3] || 'posts.json';
 
@@ -44,14 +43,16 @@ const updateStore = (title, url) => {
 
 const arena = new Arena({ accessToken });
 
-googleNews.track(
+new GoogleNews().track(
   param.query,
   async (error, data) => {
     if (error) return console.log('error', error);
     const { title, link } = data;
-    if (!param.queryRegex.test(title)) return;
-    if (!param.checkTitle(title)) return;
-    if (store.data.links.indexOf(link) > -1) return;
+    if (
+      !param.queryRegex.test(title)
+      || !param.checkTitle(title)
+      || store.data.links.indexOf(link) > -1
+    ) return;
     const block = await (arena
       .block()
       .create(
