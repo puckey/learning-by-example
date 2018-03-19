@@ -66,10 +66,12 @@ class GoogleNewsTracker {
   }
 
   connect() {
+    if (this.pollIntervalId) return;
     this.pollIntervalId = setInterval(this.poll, this.context.options.pollInterval);
   }
 
   disconnect() {
     clearInterval(this.pollIntervalId);
+    this.pollIntervalId = null;
   }
 }
