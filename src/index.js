@@ -11,7 +11,7 @@ const postsFile = process.argv[3] || 'posts.json';
 
 const param = {
   query: 'What * can teach us about *',
-  queryRegex: /What (.+) can teach us about (.*)/i,
+  queryRegex: /^What (.+) can teach us about (.*)/i,
   channelId: 'learning-by-example',
   checkTitle: title => !/ and |&/i.test(title),
   createTitle: (title) => {
