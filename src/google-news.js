@@ -51,12 +51,10 @@ class GoogleNewsTracker {
       }
     });
     feedParser.on('error', this.callback);
-    const { protocol, host, service, params } = this.context.options;
-    const res = request({
+    request({
       qs: params,
       uri: `https://news.google.com/news/rss/search/section/q/${this.query}`
-    });
-    res.pipe(feedParser);
+    }).pipe(feedParser);
   }
 
   destroy() {
