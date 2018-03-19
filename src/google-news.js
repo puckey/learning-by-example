@@ -43,11 +43,10 @@ class GoogleNewsTracker {
     const feedParser = new FeedParser();
     feedParser.on('readable', () => {
       let item;
-      while ((item = feedParser.read())) {
-        if (!this.cache[item.guid]) {
-          this.callback(null, item);
-          this.cache[item.guid] = true;
-        }
+      while (item = feedParser.read()) {
+        if (this.cache[item.guid]) return;
+        this.callback(null, item);
+        this.cache[item.guid] = true;
       }
     });
     feedParser.on('error', this.callback);
