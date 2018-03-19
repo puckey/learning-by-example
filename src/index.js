@@ -12,7 +12,8 @@ const param = {
   query: 'What * can teach us about *',
   queryRegex: /^What (.+) can teach us about (.*)/i,
   channelId: 'learning-by-example',
-  checkTitle: title => !/ and |&/i.test(title),
+  checkTitle: title => param.queryRegex.test(title)
+    && !/ and |&/i.test(title),
   createTitle: (title) => {
     const combo = title
       .match(param.queryRegex);
@@ -49,8 +50,7 @@ new GoogleNews().track(
     if (error) return console.log('error', error);
     const { title, link } = data;
     if (
-      !param.queryRegex.test(title)
-      || !param.checkTitle(title)
+      !param.checkTitle(title)
       || store.data.links.indexOf(link) > -1
     ) return;
     const block = await (arena
