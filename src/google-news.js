@@ -50,10 +50,11 @@ class GoogleNewsTracker {
       }
     });
     feedParser.on('error', this.callback);
-    request({
-      qs: params,
+    const res = request({
+      qs: this.context.options.params,
       uri: `https://news.google.com/news/rss/search/section/q/${this.query}`
-    }).pipe(feedParser);
+    });
+    res.on('response', () => res.pipe(feedParser));
   }
 
   destroy() {
