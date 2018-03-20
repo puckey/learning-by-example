@@ -60,6 +60,10 @@ new GoogleNews().track(
         link,
       )
     );
+
+    // Wait for are.na to change the title first:
+    await new Promise(resolve => setTimeout(resolve, 10000));
+
     await arena
       .block(`${block.id}`)
       .update({ title: param.createTitle(title) });
